@@ -106,6 +106,7 @@ while main_character.able_to_play:
         if not main_character.able_to_play:
             break
         documents_checked = True
+        current_street.character = None
         continue
 
     item = current_street.get_item()
@@ -136,8 +137,8 @@ while main_character.able_to_play:
             fight_with = input()
             if fight_with in main_character.backpack:
                 if inhabitant.fight(fight_with):
+                    current_street.character = None
                     if inhabitant == angry_molfar:
-                        current_street.character = None
                         print('Yes! You made it! You killed the boss! This is a victory!')
                         break
                 else:

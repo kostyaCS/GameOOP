@@ -138,7 +138,6 @@ class Item:
         assert isinstance(description, str), f"Inavlid description for {self.name}"
         self.description = description
 
-
     def describe(self):
         """
         This method describes an item.
