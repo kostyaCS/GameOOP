@@ -88,6 +88,9 @@ while main_character.able_to_play:
             choice = input('>>> ')
             if choice.lower() == 'yes':
                 main_character.have_docs = True
+            else:
+                print("I don't understand you!")
+                continue
         asked_for_docs = True
         continue
     print('\n')
@@ -103,6 +106,7 @@ while main_character.able_to_play:
 
     if inhabitant == policeman and not documents_checked:
         policeman.check_documents(main_character)
+        
         if not main_character.able_to_play:
             break
         documents_checked = True
@@ -119,8 +123,11 @@ while main_character.able_to_play:
 
     if command in ["north", "south", "east", "west"]:
         asked = False
-        # Move in the given direction
-        current_street = current_street.move(command)
+        try:
+            current_street = current_street.move(command)
+        except KeyError:
+            print('There is no street at this direction')
+            continue
     elif command == "talk":
         asked = False
         if inhabitant is not None:
